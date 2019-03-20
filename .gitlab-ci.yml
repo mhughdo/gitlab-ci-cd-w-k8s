@@ -24,7 +24,6 @@ deploy-master:
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
     - mkdir -p $HOME/.kube
-    - kubectl get secret $(kubectl get sa gitlab --output jsonpath='{.secrets[0].name}') --output jsonpath='{.data.token}' | base64 -D
     - echo  -e $KUBECONFIG  | base64 --decode > $HOME/.kube/config
     - cat $HOME/.kube/config
     - kubectl version
