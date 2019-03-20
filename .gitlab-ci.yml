@@ -25,10 +25,7 @@ deploy-master:
     - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
     - mkdir -p $HOME/.kube
     - echo  -n $KUBECONFIG 
-    - cat  $HOME/.kube/config
-    - kubectl version
-    - kubectl config view
-    - envsubst < deployment.yml | kubectl apply -f -
+
   only:
     - master
 
