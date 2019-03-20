@@ -28,7 +28,7 @@ deploy-master:
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
     - mkdir -p $HOME/.kube
-    - echo -n $KUBECONFIG | base64 -d > $HOME/.kube/config
+    - echo -n $KUBECONFIG  > $HOME/.kube/config
     - kubectl version
     - cat $HOME/.kube/config
     - envsubst < deployment.yml | kubectl apply -f -
