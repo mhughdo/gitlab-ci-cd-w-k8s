@@ -25,6 +25,7 @@ deploy-master:
     - mkdir -p $HOME/.kube
     - echo -n $KUBECONFIG  > $HOME/.kube/config
     - kubectl version
+    - kubectl config view
     - envsubst < deployment.yml | kubectl apply -f -
   only:
     - master
