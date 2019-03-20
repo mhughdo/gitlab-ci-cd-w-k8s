@@ -2,6 +2,10 @@
 # Official docker image.
 image: docker:latest
 
+stages:
+  - build
+  - deploy
+  
 services:
   - docker:dind
 
@@ -11,15 +15,20 @@ before_script:
 build-master:
   stage: build
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  only:
+    - master
+    
+deploy-master:
+  stage: deploy
+  image: alpine
+  environment:
+    name: deploy
+  script:
+    - kubectl version
+    - kubectl create -f deployment.yml
   only:
     - master
 
-build:
-  stage: build
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  except:
-    - master
+
