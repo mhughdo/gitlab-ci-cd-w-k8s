@@ -5,7 +5,6 @@ metadata:
 spec:
   ports:
   - port: 3000
-    nodePort: 30000
     protocol: TCP
     name: http
   selector:
@@ -25,6 +24,9 @@ spec:
     spec:
       containers:
       - name: kubeci
-        image: lliivvss/kubeci:v1.0.0
+        image: registry.gitlab.com/lliivvss/messing-around-w-kube:lastest
+        imagePullPolicy: Always
         ports:
           - containerPort: 3000
+     imagePullSecrets:
+        - name: gitlab-registry
