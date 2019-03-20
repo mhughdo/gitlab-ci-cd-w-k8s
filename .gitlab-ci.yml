@@ -18,12 +18,15 @@ deploy-master:
   image: alpine
   environment:
     name: deploy
-  script:
+  before_script:
     - apk update  && apk add --no-cache curl
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
     - mkdir -p $HOME/.kube
+    - echo  -e $KUBECONFIG  > $HOME/.kube/config
+    - cat $HOME/.kube/config
     - kubectl version
+  script:
     - kubectl config view
     - envsubst < deployment.yml | kubectl apply -f -
   only:
