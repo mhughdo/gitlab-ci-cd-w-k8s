@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name:  appname
+  name:  kubedp
   labels:
     app: VERSION
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: appname
+      app: 
   template:
     metadata:
       labels:
-        app: appname
+        app: mawk
     spec:
       containers:
       - name:  mawk
@@ -27,15 +27,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: appname
+  name: kubesvc
   labels:
-    app: appname
+    app: svclb
 spec:
   ports:
   - port: 3000
     protocol: TCP
     name: http
   selector:
-    app: appname
+    app: mawk
   type: LoadBalancer
 
