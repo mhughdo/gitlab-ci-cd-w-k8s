@@ -20,7 +20,7 @@ deploy-master:
     - mkdir -p $HOME/.kube
     - echo  -n $KUBECONFIG  > $HOME/.kube/config
     - cat  $HOME/.kube/config
-    - kubectl create -n lliivvss secret docker-registry gitlab-registry --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL  -o yaml --dry-run 
+    - kubectl create -n lliivvss secret docker-registry registry.gitlab.com --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL  
     - sed 's/dockercfg/dockerconfigjson/g' 
     - kubectl version
     - kubectl config view
