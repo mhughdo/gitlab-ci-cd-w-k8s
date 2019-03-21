@@ -10,7 +10,7 @@ spec:
         app: kube
     spec:
       containers:
-      - name: kubeci
+      - name: messing-around-w-kube
         image: registry.gitlab.com/lliivvss/messing-around-w-kube:lastest
         imagePullPolicy: Always
         ports:
