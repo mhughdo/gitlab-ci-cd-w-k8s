@@ -1,16 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: kubedp
+  name:  __APPNAME__
+  labels:
+    app: __APPNAME__
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: _APP_NAME_
   template:
     metadata:
       labels:
-        app: kube
+        app: __APPNAME__
     spec:
       containers:
-      - name: kubeci
+      - name:  mawk
         image: registry.gitlab.com/lliivvss/messing-around-w-kube:latest
         imagePullPolicy: Always
         ports:
@@ -22,13 +27,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubesvc
+  name: __APPNAME__
+  labels:
+    app: __APPNAME__
 spec:
   ports:
   - port: 3000
     protocol: TCP
     name: http
   selector:
-    app: kube
+    app: __APPNAME__
   type: LoadBalancer
 
