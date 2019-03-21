@@ -5,7 +5,7 @@ image: docker:latest
 stages:
   - deploy
 services:
-  - docker:dind
+  - docker:stable
 
 deploy-master:
   stage: deploy
