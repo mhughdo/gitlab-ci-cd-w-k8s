@@ -12,8 +12,8 @@ build-master:
   stage: build
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
   only:
     - master
 
@@ -32,7 +32,7 @@ deploy-master:
     - kubectl create -n lliivvss secret docker-registry registry.gitlab.com --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run 
     - kubectl version
     - kubectl config view
-    - sed 's/APPNAME/${CI_PROJECT_NAME}/g; s/VERSION/${CI_COMMIT_SHA}/g' deployment.yml;
+    - sed 's/__VERSION__/${CI_COMMIT_SHA}/g' deployment.yml;
     - kubectl apply -f deployment.yml
   only:
     - master

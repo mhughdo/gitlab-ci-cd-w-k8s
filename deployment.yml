@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name:  kubedp
   labels:
-    app: VERSION
+    app: kubedp
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name:  mawk
-        image: registry.gitlab.com/lliivvss/messing-around-w-kube:latest
+        image: registry.gitlab.com/lliivvss/messing-around-w-kube:__VERSION__
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: kubesvc
   labels:
-    app: svclb
+    app: kubesvc
 spec:
   ports:
   - port: 3000
