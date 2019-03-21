@@ -11,7 +11,7 @@ services:
 build-master:
   stage: build
   script:
-    - export DOCKER_HOST="tcp://localhost:2375"
+    - export DOCKER_HOST=$DOCKER_PORT
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_IMAGE"
