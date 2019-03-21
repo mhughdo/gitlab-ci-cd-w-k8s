@@ -15,6 +15,9 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
+      imagePullSecrets:
+        - name: gitlab-registry
+
       serviceAccount: default
 ---
 apiVersion: v1
