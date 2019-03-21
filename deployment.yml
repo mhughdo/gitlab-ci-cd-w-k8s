@@ -16,9 +16,8 @@ spec:
         ports:
           - containerPort: 3000
       imagePullSecrets:
-        - name: registry.gitlab.com
+      - name: registry.gitlab.com
 
-      serviceAccount: default
 ---
 apiVersion: v1
 kind: Service
