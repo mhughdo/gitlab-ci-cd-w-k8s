@@ -22,7 +22,6 @@ deploy-master:
   image: alpine
   environment:
     name: deploy
-    
   script:
     - apk add --no-cache gettext
     - apk update  && apk add --no-cache curl
