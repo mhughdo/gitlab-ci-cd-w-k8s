@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name:  kubedp
   labels:
-    app: kubedp
+    app: ${CI_COMMIT_SHORT_SHA}
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name:  mawk
-        image: registry.gitlab.com/lliivvss/messing-around-w-kube:__VERSION__
+        image: registry.gitlab.com/lliivvss/messing-around-w-kube:latest
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
