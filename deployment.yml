@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name:  __APPNAME__
+  name:  APPNAME
   labels:
-    app: __APPNAME__
+    app: VERSION
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: _APP_NAME_
+      app: APPNAME
   template:
     metadata:
       labels:
-        app: __APPNAME__
+        app: APPNAME
     spec:
       containers:
       - name:  mawk
@@ -27,15 +27,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: __APPNAME__
+  name: APPNAME
   labels:
-    app: __APPNAME__
+    app: APPNAME
 spec:
   ports:
   - port: 3000
     protocol: TCP
     name: http
   selector:
-    app: __APPNAME__
+    app: APPNAME
   type: LoadBalancer
 
