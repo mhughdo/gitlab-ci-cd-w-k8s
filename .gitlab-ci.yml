@@ -11,6 +11,7 @@ services:
 build-master:
   stage: build
   script:
+    - export DOCKER_HOST=$DOCKER_PORT
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_IMAGE"
@@ -29,11 +30,11 @@ deploy-master:
     - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
     - mkdir -p $HOME/.kube
     - echo  -n $KUBECONFIG  > $HOME/.kube/config
-    - kubectl delete secret registry.gitlab.com
     - kubectl create -n lliivvss secret docker-registry registry.gitlab.com --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL
     - kubectl version
     - kubectl config view
     - kubectl patch deployment web -p \ "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
     - envsubst < deployment.yml |  kubectl apply -f -
+    - kubectl delete secret registry.gitlab.com
   only:
     - master
