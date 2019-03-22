@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         app: mawk
-        date: '22/03/2019'
     spec:
       containers:
       - name: mawkube
@@ -24,7 +23,7 @@ spec:
         readinessProbe:
           httpGet:
              path: /
-             port: 8080
+             port: 3000
              initialDelaySeconds: 5
              periodSeconds: 5
              successThreshold: 1  

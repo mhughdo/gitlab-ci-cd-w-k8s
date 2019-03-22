@@ -36,7 +36,6 @@ deploy-master:
     - kubectl create -n lliivvss secret docker-registry registry.gitlab.com --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL
     - kubectl version
     - kubectl config view
-    - kubectl patch deployment web -p \ "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
     - envsubst < deployment.yml |  kubectl apply -f -
     - kubectl delete secret registry.gitlab.com
   only:
