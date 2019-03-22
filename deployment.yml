@@ -8,6 +8,7 @@ spec:
     metadata:
       labels:
         app: mawk
+        date: '22/03/2019'
     spec:
       containers:
       - name: mawkube
