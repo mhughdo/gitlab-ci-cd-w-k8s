@@ -20,12 +20,6 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
-        livenessProbe:
-            httpGet:
-              path: /ping
-              port: 3000
-            initialDelaySeconds: 10
-            timeoutSeconds: 15
       imagePullSecrets:
       - name: registry.gitlab.com
 
