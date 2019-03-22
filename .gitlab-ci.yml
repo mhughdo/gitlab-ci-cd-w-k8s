@@ -7,6 +7,7 @@ stages:
   - deploy
 services:
   - docker:dind
+  
 build-master:
   stage: build
   script:
@@ -33,6 +34,5 @@ deploy-master:
     - kubectl version
     - kubectl config view
     - envsubst < deployment.yml |  kubectl apply -f -
-    - kubectl delete secret registry.gitlab.com
   only:
     - master
