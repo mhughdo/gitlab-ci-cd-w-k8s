@@ -7,10 +7,6 @@ stages:
   - deploy
 services:
   - docker:dind
-variables:
-  DOCKER_DRIVER: overlay
-  DOCKER_HOST: tcp://localhost:2375
-
 build-master:
   stage: build
   script:
