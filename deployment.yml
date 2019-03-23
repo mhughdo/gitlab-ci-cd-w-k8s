@@ -21,10 +21,13 @@ spec:
         ports:
           - containerPort: 3000
         livenessProbe:
+          failureThreshold: 3
           httpGet:
             path: /
             port: 3000
           initialDelaySeconds: 15
+          successThreshold: 1
+          periodSeconds: 10
           timeoutSeconds: 30
       imagePullSecrets:
       - name: registry.gitlab.com
