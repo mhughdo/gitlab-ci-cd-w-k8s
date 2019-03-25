@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: kubedp
+  name: messing-arounddp
 spec:
   replicas: 1
   strategy:
@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubesvc
+  name: messing-aroundsvc
 spec:
   ports:
   - port: 3000
