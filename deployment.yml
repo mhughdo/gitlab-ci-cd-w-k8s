@@ -60,7 +60,7 @@ spec:
   tls:
   - hosts:
     - hughdo.dev
-    secretName: tls-secret
+    secretName: mawk-secret
   rules:
   - host: hughdo.dev
     http:
