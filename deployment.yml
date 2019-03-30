@@ -46,6 +46,7 @@ spec:
   selector:
     app: messing-aroundwk
   type: ClusterIP
+  
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
